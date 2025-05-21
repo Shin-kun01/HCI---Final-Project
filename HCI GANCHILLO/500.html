@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %}Server Error - Ganchillo{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="error-container">
+        <div class="error-icon">
+            <i class="fas fa-exclamation-triangle"></i>
+        </div>
+        <h1>500</h1>
+        <h2>Server Error</h2>
+        <p>Sorry, something went wrong on our server. We're working to fix the issue. Please try again later.</p>
+        <a href="index.html" class="btn btn-primary">Go to Homepage</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Add error page styles
+    const style = document.createElement('style');
+    style.textContent = `
+        .error-container {
+            text-align: center;
+            padding: 5rem 1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .error-icon {
+            font-size: 5rem;
+            color: #bc4749;
+            margin-bottom: 2rem;
+        }
+        
+        .error-container h1 {
+            font-size: 5rem;
+            margin-bottom: 0.5rem;
+            color: #bc4749;
+        }
+        
+        .error-container h2 {
+            margin-bottom: 1.5rem;
+        }
+        
+        .error-container p {
+            margin-bottom: 2rem;
+            color: #666;
+        }
+    `;
+    document.head.appendChild(style);
+});
+</script>
+{% endblock %}

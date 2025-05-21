@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Wishlist - Ganchillo</title>
+    <meta name="description" content="View and manage your wishlist of saved crochet products at Ganchillo.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Judson:wght@400;700&family=Public+Sans:wght@300;400;500;600&family=Rubik:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="modal.css">
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <a href="index.html">
+                    <h1>GANCHILLO</h1>
+                </a>
+            </div>
+            
+            <div class="search-container">
+                <input type="text" placeholder="Search in Ganchillo">
+                <button class="search-btn"><i class="fas fa-search"></i></button>
+            </div>
+            
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#" id="categories-link">Categories</a></li>
+                    <li><a href="products.html">Products</a></li>
+                </ul>
+            </nav>
+            
+            <div class="nav-icons">
+                <div class="nav-icon language-dropdown">
+                    <i class="fas fa-globe"></i>
+                    <div class="dropdown-menu">
+                        <a href="#" class="dropdown-item" data-lang="en">English</a>
+                        <a href="#" class="dropdown-item" data-lang="es">Español</a>
+                        <a href="#" class="dropdown-item" data-lang="fr">Français</a>
+                        <a href="#" class="dropdown-item" data-lang="de">Deutsch</a>
+                        <a href="#" class="dropdown-item" data-lang="tl">Filipino</a>
+                    </div>
+                </div>
+                <div class="nav-icon notification-dropdown">
+                    <i class="far fa-bell"></i>
+                    <span class="notification-indicator"></span>
+                    <div class="dropdown-menu notifications-menu">
+                        <div class="notification-header">
+                            <h3>Notifications</h3>
+                            <a href="#" class="mark-all-read">Mark all as read</a>
+                        </div>
+                        <div class="notification-list">
+                            <div class="empty-notifications">
+                                <i class="far fa-bell-slash"></i>
+                                <p>No notifications yet</p>
+                            </div>
+                            <!-- Notifications will be added here dynamically -->
+                        </div>
+                    </div>
+                </div>
+                <div class="nav-icon user-dropdown">
+                    <i class="far fa-user"></i>
+                    <div class="dropdown-menu" id="user-dropdown-menu">
+                        <!-- This will be populated by JavaScript -->
+                    </div>
+                </div>
+                <div class="nav-icon cart-icon" id="cart-trigger">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <main>
+        <div class="container">
+            <h1 class="page-title">My Wishlist</h1>
+            
+            <div class="wishlist-container" id="wishlist-content">
+                <!-- Wishlist content will be loaded by JavaScript -->
+                <div class="loading-spinner">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Loading wishlist...</p>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>GANCHILLO</h3>
+                    <p>Create beauty with every stitch.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-pinterest-p"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Customer Care</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">About Ganchillo</a></li>
+                        <li><a href="#">Contact us</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                        <li><a href="#">Payment Method</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>STAY IN THE LOOP, STITCH BY STITCH</h3>
+                    <p>Subscribe to receive updates, access to exclusive deals, and more.</p>
+                    <div class="newsletter">
+                        <form class="newsletter-form" id="email-form">
+                            <input type="email" class="newsletter-input" placeholder="Your Email Address">
+                            <button type="submit" class="newsletter-btn">SUBSCRIBE</button>
+                        </form>
+                    </div>
+                    <div class="newsletter">
+                        <form class="newsletter-form" id="sms-form">
+                            <input type="tel" class="newsletter-input" placeholder="Your phone number for SMS">
+                            <button type="submit" class="newsletter-btn">SUBSCRIBE</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2023 Ganchillo. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Cart Modal -->
+    <div class="modal" id="cart-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Shopping Cart</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="cart-items">
+                    <!-- Cart items will be displayed here -->
+                </div>
+                <div id="cart-summary">
+                    <!-- Cart summary will be displayed here -->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="continue-shopping" class="btn btn-secondary">Continue Shopping</button>
+                <button id="checkout-btn" class="btn btn-primary">Proceed to Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div class="toast-container" id="toast-container"></div>
+    
+    <!-- Scripts -->
+    <script src="data.js"></script>
+    <script src="auth.js"></script>
+    <script src="cart.js"></script>
+    <script src="modal.js"></script>
+    <script src="notifications.js"></script>
+    <script src="wishlist.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

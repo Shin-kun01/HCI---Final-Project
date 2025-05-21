@@ -1,0 +1,157 @@
+<div class="modal-template">
+    <div class="modal-backdrop">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title">Modal Title</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <!-- Modal content goes here -->
+                Modal content placeholder
+            </div>
+            <div class="modal-footer">
+                <!-- Footer buttons go here -->
+                <button class="btn btn-secondary modal-cancel">Cancel</button>
+                <button class="btn btn-primary modal-confirm">Confirm</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// This file contains templates for modals that can be used throughout the application
+// The actual implementation of modals is in static/js/modal.js
+document.addEventListener('DOMContentLoaded', function() {
+    // Template for quick view modal
+    const quickViewTemplate = `
+        <div class="product-quick-view">
+            <div class="quick-view-image">
+                <img src="{image}" alt="{name}">
+            </div>
+            <div class="quick-view-details">
+                <h2 class="quick-view-title">{name}</h2>
+                <div class="quick-view-price">
+                    {price}
+                    {original_price}
+                    {discount}
+                </div>
+                <p class="quick-view-desc">{description}</p>
+                
+                <div class="quick-view-colors">
+                    <span class="color-label">Color:</span>
+                    <div class="color-options">
+                        {color_options}
+                    </div>
+                </div>
+                
+                <div class="quick-view-sizes">
+                    <span class="size-label">Size:</span>
+                    <div class="size-options">
+                        {size_options}
+                    </div>
+                </div>
+                
+                <div class="quick-view-quantity">
+                    <span class="quantity-label">Quantity:</span>
+                    <div class="quantity-selector">
+                        <div class="quantity-btn decrease">-</div>
+                        <input type="text" class="quantity-input" value="1" min="1" max="99">
+                        <div class="quantity-btn increase">+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    // Template for cart modal
+    const cartTemplate = `
+        <div class="cart-items">
+            {cart_items}
+        </div>
+        <div class="shipping-calculation">
+            <div class="shipping-title">Is your cart eligible for free shipping? Enter your zip code.</div>
+            <div class="shipping-input">
+                <input type="text" class="zip-input" placeholder="Enter ZIP code">
+                <button class="calc-btn">Find out</button>
+            </div>
+        </div>
+        <div class="cart-summary">
+            <div class="summary-row">
+                <span>Subtotal</span>
+                <span>{subtotal}</span>
+            </div>
+            <div class="summary-row">
+                <span>Shipping</span>
+                <span>{shipping}</span>
+            </div>
+            <div class="summary-row">
+                <span>Tax</span>
+                <span>{tax}</span>
+            </div>
+            <div class="summary-row total">
+                <span>Total</span>
+                <span>{total}</span>
+            </div>
+        </div>
+        <div class="cart-buttons">
+            <button class="btn continue-shopping">Continue Shopping</button>
+            <button class="btn btn-primary checkout-btn">Proceed to Checkout</button>
+        </div>
+    `;
+    
+    // Template for empty cart
+    const emptyCartTemplate = `
+        <div class="empty-cart">
+            <div class="empty-cart-icon">
+                <i class="fas fa-shopping-cart"></i>
+            </div>
+            <h3>Your cart is empty</h3>
+            <p>Looks like you haven't added any items to your cart yet.</p>
+            <button class="btn btn-primary continue-shopping">Continue Shopping</button>
+        </div>
+    `;
+    
+    // Template for cart item
+    const cartItemTemplate = `
+        <div class="cart-item" data-item-id="{id}" data-item-color="{color}" data-item-size="{size}">
+            <div class="cart-item-image">
+                <img src="{image}" alt="{name}">
+            </div>
+            <div class="cart-item-details">
+                <h4 class="cart-item-title">{name}</h4>
+                <div class="cart-item-price">{price}</div>
+                <div class="cart-item-variant">Color: {color}, Size: {size}</div>
+                <div class="cart-item-actions">
+                    <div class="cart-quantity">
+                        <button class="cart-quantity-btn decrease">-</button>
+                        <input type="text" class="cart-quantity-input" value="{quantity}" min="1" max="99">
+                        <button class="cart-quantity-btn increase">+</button>
+                    </div>
+                    <button class="remove-item">Remove</button>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    // Template for success message
+    const successTemplate = `
+        <div class="success-modal">
+            <div class="success-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h2 class="success-title">{title}</h2>
+            <p class="success-message">{message}</p>
+            {additional_content}
+        </div>
+    `;
+    
+    // Make templates available globally
+    window.modalTemplates = {
+        quickView: quickViewTemplate,
+        cart: cartTemplate,
+        emptyCart: emptyCartTemplate,
+        cartItem: cartItemTemplate,
+        success: successTemplate
+    };
+});
+</script>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="cart-header">
+            <span>SHOPPING CART</span>
+            <button class="close-btn">&times;</button>
+        </div>
+        
+        <div class="cart-container">
+            <div class="cart-items">
+                <div class="cart-item">
+                    <div class="cart-item-image">
+                        <img src="https://via.placeholder.com/80x80?text=Sweater" alt="Sweater">
+                    </div>
+                    <div class="cart-item-details">
+                        <h3 class="cart-item-name">Manfinity Hypemode Men's Vacation Inspired Floral Embroidery Hollow Knit Sweater</h3>
+                        <p class="cart-item-price">₱592</p>
+                        <p class="cart-item-variant">Color: Default, Size: One Size</p>
+                        <div class="quantity-control">
+                            <button class="quantity-btn minus" data-id="1">-</button>
+                            <input type="text" class="quantity-input" value="1" readonly>
+                            <button class="quantity-btn plus" data-id="1">+</button>
+                        </div>
+                    </div>
+                    <button class="remove-btn" data-id="1">Remove</button>
+                </div>
+                
+                <div class="cart-item">
+                    <div class="cart-item-image">
+                        <img src="https://via.placeholder.com/80x80?text=Sweater" alt="Sweater">
+                    </div>
+                    <div class="cart-item-details">
+                        <h3 class="cart-item-name">Manfinity Hypemode Men's Vacation Inspired Floral Embroidery Hollow Knit Sweater</h3>
+                        <p class="cart-item-price">₱592</p>
+                        <p class="cart-item-variant">Color: Apricot, Size: M</p>
+                        <div class="quantity-control">
+                            <button class="quantity-btn minus" data-id="2">-</button>
+                            <input type="text" class="quantity-input" value="1" readonly>
+                            <button class="quantity-btn plus" data-id="2">+</button>
+                        </div>
+                    </div>
+                    <button class="remove-btn" data-id="2">Remove</button>
+                </div>
+            </div>
+            
+            <div class="shipping-calculator">
+                <h3>Is your cart eligible for free shipping? Enter your zip code.</h3>
+                <div class="zip-form">
+                    <input type="text" id="zip-code-input" placeholder="Enter ZIP code" class="form-input">
+                    <button id="check-shipping-btn" class="shipping-btn">Find out</button>
+                </div>
+            </div>
+            
+            <div class="cart-summary">
+                <div class="summary-row">
+                    <span class="summary-label">Subtotal</span>
+                    <span class="summary-value">₱1,184</span>
+                </div>
+                <div class="summary-row">
+                    <span class="summary-label">Shipping</span>
+                    <span class="summary-value">₱500</span>
+                </div>
+                <div class="summary-row">
+                    <span class="summary-label">Tax</span>
+                    <span class="summary-value">₱118.4</span>
+                </div>
+                <div class="summary-row total-row">
+                    <span class="summary-label">Total</span>
+                    <span class="summary-value">₱1,802.4</span>
+                </div>
+            </div>
+            
+            <div class="cart-actions">
+                <button class="continue-shopping-btn">CONTINUE SHOPPING</button>
+                <a href="checkout.html" class="checkout-btn">PROCEED TO CHECKOUT</a>
+            </div>
+        </div>
+    </div>
+    
+    <script src="cart.js"></script>
+</body>
+</html>

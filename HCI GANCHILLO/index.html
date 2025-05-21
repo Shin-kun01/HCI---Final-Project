@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ganchillo - Crochet Fashion Collection</title>
+    <meta name="description" content="Discover beautiful handcrafted crochet clothing, accessories, and home decor at Ganchillo. Create beauty with every stitch.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Judson:wght@400;700&family=Public+Sans:wght@300;400;500;600&family=Rubik:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="modal.css">
+    <style>
+        /* Enhanced Cart & Checkout Styles */
+        .cart-modal .modal-content {
+            max-width: 800px;
+            padding: 20px;
+        }
+        
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .cart-item-image {
+            width: 80px;
+            margin-right: 15px;
+        }
+        
+        .cart-item-image img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+        
+        .cart-item-details {
+            flex: 1;
+        }
+        
+        .cart-item-brand {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        
+        .cart-item-title {
+            margin-bottom: 5px;
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .cart-item-sku {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #333;
+            font-size: 0.9em;
+        }
+        
+        .cart-item-variant {
+            color: #666;
+            font-size: 0.8em;
+            margin-bottom: 10px;
+        }
+        
+        .cart-item-actions {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            min-width: 120px;
+        }
+        
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .quantity-btn {
+            width: 25px;
+            height: 25px;
+            border: 1px solid #ddd;
+            background: #f5f5f5;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .quantity {
+            margin: 0 10px;
+            min-width: 20px;
+            text-align: center;
+        }
+        
+        .remove-btn {
+            background: none;
+            border: none;
+            color: #dc3545;
+            cursor: pointer;
+            font-size: 0.8em;
+            padding: 0;
+            text-align: right;
+        }
+        
+        .shipping-check {
+            margin: 20px 0;
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+        
+        .zip-form {
+            display: flex;
+            margin-top: 10px;
+        }
+        
+        .zip-form input {
+            flex: 1;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px 0 0 4px;
+            font-size: 0.9em;
+        }
+        
+        .shipping-btn {
+            padding: 8px 15px;
+            background: #333;
+            color: white;
+            border: none;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            font-size: 0.9em;
+        }
+        
+        .cart-summary {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+        
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 0.95em;
+        }
+        
+        .total-row {
+            font-weight: bold;
+            border-top: 1px solid #eee;
+            padding-top: 10px;
+            margin-top: 10px;
+        }
+        
+        /* Checkout Page Styles */
+        #checkout-page {
+            padding: 40px 0;
+            background: #f5f5f5;
+            min-height: 100vh;
+        }
+        
+        .checkout-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .checkout-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .checkout-header h1 {
+            font-size: 2em;
+            color: #333;
+        }
+        
+        .checkout-content {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .checkout-form {
+            flex: 2;
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .order-summary {
+            flex: 1;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            align-self: flex-start;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            font-size: 0.9em;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+        
+        .form-input:focus {
+            border-color: #d3b683;
+            outline: none;
+        }
+        
+        .error-message {
+            color: #dc3545;
+            font-size: 0.8em;
+            margin-top: 5px;
+            display: none;
+            font-style: italic;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+        }
+        
+        .payment-options {
+            display: flex;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .payment-option {
+            flex: 1;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .payment-option:hover {
+            border-color: #d3b683;
+        }
+        
+        .payment-option.selected {
+            border-color: #d3b683;
+            background: #f9f5eb;
+        }
+        
+        .payment-option i {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #555;
+        }
+        
+        .payment-option span {
+            display: block;
+            font-size: 0.9em;
+        }
+        
+        .card-details {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        .order-items {
+            margin-bottom: 20px;
+        }
+        
+        .order-item {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .order-item h4 {
+            font-size: 0.9em;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        
+        .order-item p {
+            font-size: 0.8em;
+            color: #666;
+            margin-bottom: 3px;
+        }
+        
+        .order-totals {
+            margin-top: 20px;
+        }
+        
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+        
+        .grand-total {
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #eee;
+        }
+        
+        .place-order-btn {
+            width: 100%;
+            padding: 15px;
+            background: #d3b683;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 20px;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+        
+        .place-order-btn:hover {
+            background: #b89a6b;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .checkout-content {
+                flex-direction: column;
+            }
+            
+            .cart-item {
+                flex-direction: column;
+            }
+            
+            .cart-item-actions {
+                align-items: flex-start;
+                margin-top: 10px;
+            }
+            
+            .payment-options {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <a href="index.html">
+                    <h1>GANCHILLO</h1>
+                </a>
+            </div>
+            
+            <div class="search-container">
+                <input type="text" placeholder="Search in Ganchillo">
+                <button class="search-btn"><i class="fas fa-search"></i></button>
+            </div>
+            
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="#" id="categories-link">Categories</a></li>
+                    <li><a href="products.html">Products</a></li>
+                </ul>
+            </nav>
+            
+            <div class="nav-icons">
+                <div class="nav-icon language-dropdown">
+                    <i class="fas fa-globe"></i>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" class="dropdown-item" data-lang="en">English</a></li>
+                        <li><a href="#" class="dropdown-item" data-lang="es">Español</a></li>
+                        <li><a href="#" class="dropdown-item" data-lang="fr">Français</a></li>
+                        <li><a href="#" class="dropdown-item" data-lang="de">Deutsch</a></li>
+                        <li><a href="#" class="dropdown-item" data-lang="tl">Filipino</a></li>
+                    </ul>
+                </div>
+                <div class="nav-icon notification-dropdown">
+                    <i class="far fa-bell"></i>
+                    <span class="notification-indicator"></span>
+                    <div class="dropdown-menu notifications-menu">
+                        <div class="notification-header">
+                            <h3>Notifications</h3>
+                            <a href="#" class="mark-all-read">Mark all as read</a>
+                        </div>
+                        <div class="notification-list">
+                            <div class="empty-notifications">
+                                <i class="far fa-bell-slash"></i>
+                                <p>No notifications yet</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="nav-icon user-dropdown">
+                    <i class="far fa-user"></i>
+                    <div class="dropdown-menu" id="user-dropdown-menu">
+                        <!-- Populated by JavaScript -->
+                    </div>
+                </div>
+                <div class="nav-icon cart-icon" id="cart-trigger">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">2</span>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <main>
+        <div class="hero-section">
+            <div class="slider-container">
+                <div class="slider-track">
+                    <div class="slide active">
+                        <img src="Slide/landscape.png" alt="Handcrafted crochet fashion">
+                        <div class="slide-content">
+                            <h2>Handcrafted Crochet Fashion</h2>
+                            <p>Discover unique pieces made with love and skill</p>
+                            <a href="products.html" class="btn btn-primary">Shop Now</a>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <img src="Slide/landscape summer collection.png" alt="New summer collection">
+                        <div class="slide-content">
+                            <h2>New Summer Collection</h2>
+                            <p>Lightweight and breathable designs for the warm season</p>
+                            <a href="products.html" class="btn btn-primary">Explore</a>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <img src="Slide/landscape home decor.png" alt="Home decor items">
+                        <div class="slide-content">
+                            <h2>Crochet For Your Home</h2>
+                            <p>Bring warmth and texture to your living spaces</p>
+                            <a href="products.html" class="btn btn-primary">Discover</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider-nav">
+                    <button class="slider-prev"><i class="fas fa-chevron-left"></i></button>
+                    <div class="slider-indicators">
+                        <span class="indicator active"></span>
+                        <span class="indicator"></span>
+                        <span class="indicator"></span>
+                    </div>
+                    <button class="slider-next"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <h2 class="section-title">Newest Products</h2>
+            
+            <div class="products-grid" id="newest-products">
+                <!-- Products will be loaded by JavaScript -->
+                <div class="loading-spinner">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Loading products...</p>
+                </div>
+            </div>
+            
+            <div class="section-cta">
+                <a href="products.html" class="btn btn-primary">View All Products</a>
+            </div>
+        </div>
+
+        <div class="featured-section">
+            <div class="container">
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-truck"></i>
+                        </div>
+                        <h3>Free Shipping</h3>
+                        <p>On orders over ₱1000</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-medal"></i>
+                        </div>
+                        <h3>Quality Assurance</h3>
+                        <p>Handcrafted with premium yarn</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-exchange-alt"></i>
+                        </div>
+                        <h3>Easy Returns</h3>
+                        <p>30-day return policy</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <h3>24/7 Support</h3>
+                        <p>Always here to help you</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="categories-section">
+            <div class="container">
+                <h2 class="section-title">Shop By Category</h2>
+                
+                <div class="categories-grid">
+                    <a href="products.html?category=Sweaters" class="category-card">
+                        <img src="CATEGORIES/sweaters.png" alt="Crochet sweaters">
+                        <div class="category-name">Sweaters</div>
+                    </a>
+                    
+                    <a href="products.html?category=Dresses" class="category-card">
+                        <img src="CATEGORIES/Dresses.png" alt="Crochet dresses">
+                        <div class="category-name">Dresses</div>
+                    </a>
+                    
+                    <a href="products.html?category=Tops" class="category-card">
+                        <img src="CATEGORIES/Tops.png" alt="Crochet tops">
+                        <div class="category-name">Tops</div>
+                    </a>
+                    
+                    <a href="products.html?category=Accessories" class="category-card">
+                        <img src="CATEGORIES/Accessories.png" alt="Crochet accessories">
+                            <div class="category-name">Accessories</div>
+                    </a>
+                    <a href="products.html?category=Swimwear" class="category-card">
+                        <img src="CATEGORIES/Swimwear.png" alt="Crochet swimwear">
+                        <div class="category-name">Swimwear</div>
+                    </a>
+                    <a href="products.html?category=Bags" class="category-card">
+                        <img src="CATEGORIES/Bags.png" alt="Crochet bags">
+                        <div class="category-name">Bags</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Cart Modal -->
+    <div class="modal" id="cart-modal">
+        <div class="modal-content cart-modal">
+            <div class="modal-header">
+                <h2>SHOPPING CART</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="cart-items-container">
+                    <div class="cart-item">
+                        <div class="cart-item-image">
+                            <img src="https://via.placeholder.com/80x80?text=Sweater" alt="Floral Hollow Knit Sweater">
+                        </div>
+                        <div class="cart-item-details">
+                            <h3 class="cart-item-brand">Manfinity Hypernode</h3>
+                            <p class="cart-item-title">Men's Vacation Inspired Floral Hypernode Embroidery Hollow Knit Sweater</p>
+                            <p class="cart-item-sku">P592</p>
+                            <div class="cart-item-variant">
+                                <span>Color: Default</span>
+                                <span>Size: One Size</span>
+                            </div>
+                        </div>
+                        <div class="cart-item-actions">
+                            <div class="quantity-control">
+                                <button class="quantity-btn minus">-</button>
+                                <span class="quantity">1</span>
+                                <button class="quantity-btn plus">+</button>
+                            </div>
+                            <button class="remove-btn">Remove</button>
+                        </div>
+                    </div>
+                    
+                    <div class="cart-item">
+                        <div class="cart-item-image">
+                            <img src="https://via.placeholder.com/80x80?text=Sweater" alt="Floral Hollow Knit Sweater">
+                        </div>
+                        <div class="cart-item-details">
+                            <h3 class="cart-item-brand">Manfinity Hypernode</h3>
+                            <p class="cart-item-title">Men's Vacation Inspired Floral Hypernode Embroidery Hollow Knit Sweater</p>
+                            <p class="cart-item-sku">P592</p>
+                            <div class="cart-item-variant">
+                                <span>Color: Apricot</span>
+                                <span>Size: M</span>
+                            </div>
+                        </div>
+                        <div class="cart-item-actions">
+                            <div class="quantity-control">
+                                <button class="quantity-btn minus">-</button>
+                                <span class="quantity">1</span>
+                                <button class="quantity-btn plus">+</button>
+                            </div>
+                            <button class="remove-btn">Remove</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="shipping-check">
+                    <p>Is your cart eligible for free shipping? Enter your zip code.</p>
+                    <div class="zip-form">
+                        <input type="text" placeholder="Enter ZIP code">
+                        <button class="shipping-btn">Find out</button>
+                    </div>
+                </div>
+                
+                <div class="cart-summary">
+                    <div class="summary-row">
+                        <span class="summary-label">Subtotal</span>
+                        <span class="summary-value">₽1,184</span>
+                    </div>
+                    <div class="summary-row">
+                        <span class="summary-label">Shipping</span>
+                        <span class="summary-value">₽500</span>
+                    </div>
+                    <div class="summary-row">
+                        <span class="summary-label">Tax</span>
+                        <span class="summary-value">₽118.4</span>
+                    </div>
+                    <div class="summary-row total-row">
+                        <span class="summary-label">Total</span>
+                        <span class="summary-value">₽1,802.4</span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="continue-shopping">CONTINUE SHOPPING</button>
+                <button class="btn btn-primary" id="proceed-checkout">PROCEED TO CHECKOUT</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout Page (hidden by default) -->
+    <div id="checkout-page" class="hidden">
+        <div class="checkout-container">
+            <div class="checkout-header">
+                <h1>CHECKOUT</h1>
+            </div>
+            
+            <div class="checkout-content">
+                <div class="checkout-form">
+                    <section class="customer-details">
+                        <h2>Customer Details</h2>
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <input type="email" class="form-input" required>
+                            <p class="error-message">Please enter a valid email address.</p>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Full Name</label>
+                            <input type="text" class="form-input" required>
+                            <p class="error-message">Please enter your full name.</p>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Address</label>
+                            <input type="text" class="form-input" required>
+                            <p class="error-message">Please enter your address.</p>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>City</label>
+                                <input type="text" class="form-input" required>
+                                <p class="error-message">Please enter your city.</p>
+                            </div>
+                            <div class="form-group">
+                                <label>Zip Code</label>
+                                <input type="text" class="form-input" required>
+                                <p class="error-message">Please enter a valid zip code.</p>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    <section class="payment-method">
+                        <h2>Payment Method</h2>
+                        <div class="payment-options">
+                            <div class="payment-option">
+                                <i class="far fa-credit-card"></i>
+                                <span>Credit Card</span>
+                            </div>
+                            <div class="payment-option">
+                                <i class="fab fa-paypal"></i>
+                                <span>PayPal</span>
+                            </div>
+                            <div class="payment-option">
+                                <i class="fas fa-university"></i>
+                                <span>Bank Transfer</span>
+                            </div>
+                        </div>
+                        
+                        <div class="card-details">
+                            <div class="form-group">
+                                <label>Card Number</label>
+                                <input type="text" class="form-input" placeholder="1234 5678 9012 3456" required>
+                                <p class="error-message">Please enter a valid card number.</p>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Expiry Date</label>
+                                    <input type="text" class="form-input" placeholder="MM/YY" required>
+                                    <p class="error-message">Please enter a valid date.</p>
+                                </div>
+                                <div class="form-group">
+                                    <label>CW</label>
+                                    <input type="text" class="form-input" placeholder="123" required>
+                                    <p class="error-message">Please enter your CW.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                
+                <div class="order-summary">
+                    <h2>Order Summary</h2>
+                    <div class="order-items">
+                        <div class="order-item">
+                            <h4>Manfinity Hypernode Men's Vacation Inspired Floral P592</h4>
+                            <p>Hypernode Embroidery Hollow Knit Sweater</p>
+                            <p>Default, One Size × 1</p>
+                        </div>
+                        <div class="order-item">
+                            <h4>Manfinity Hypernode Men's Vacation Inspired Floral P592</h4>
+                            <p>Hypernode Embroidery Hollow Knit Sweater</p>
+                            <p>Apricot, M × 1</p>
+                        </div>
+                    </div>
+                    
+                    <div class="order-totals">
+                        <div class="total-row">
+                            <span>Subtotal</span>
+                            <span>₽1,184</span>
+                        </div>
+                        <div class="total-row">
+                            <span>Shipping</span>
+                            <span>₽500</span>
+                        </div>
+                        <div class="total-row">
+                            <span>Tax</span>
+                            <span>₽118.4</span>
+                        </div>
+                        <div class="total-row grand-total">
+                            <span>Total</span>
+                            <span>₽1,802.4</span>
+                        </div>
+                    </div>
+                    
+                    <button class="place-order-btn">PLACE ORDER</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>GANCHILLO</h3>
+                    <p>Create beauty with every stitch.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-pinterest-p"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Customer Care</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">About Ganchillo</a></li>
+                        <li><a href="#">Contact us</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                        <li><a href="#">Payment Method</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>STAY IN THE LOOP, STITCH BY STITCH</h3>
+                    <p>Subscribe to receive updates, access to exclusive deals, and more.</p>
+                    <div class="newsletter">
+                        <form class="newsletter-form" id="email-form">
+                            <input type="email" class="newsletter-input" placeholder="Your Email Address">
+                            <button type="submit" class="newsletter-btn">SUBSCRIBE</button>
+                        </form>
+                    </div>
+                    <div class="newsletter">
+                        <form class="newsletter-form" id="sms-form">
+                            <input type="tel" class="newsletter-input" placeholder="Your phone number for SMS">
+                            <button type="submit" class="newsletter-btn">SUBSCRIBE</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2023 Ganchillo. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Product Quick View Modal -->
+    <div class="modal" id="product-modal">
+        <div class="modal-content product-modal-content">
+            <div class="modal-header">
+                <h2 id="modal-product-name">Product Name</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body product-modal-body">
+                <div class="product-modal-image">
+                    <img id="modal-product-image" src="" alt="Product">
+                </div>
+                <div class="product-modal-details">
+                    <div class="product-modal-price" id="modal-product-price"></div>
+                    <div class="product-modal-description" id="modal-product-description"></div>
+                    <div class="product-modal-actions">
+                        <button id="modal-add-to-cart" class="btn btn-primary">Add to Cart</button>
+                        <button id="modal-add-to-wishlist" class="btn btn-secondary">
+                            <i class="far fa-heart"></i> Add to Wishlist
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div class="toast-container" id="toast-container"></div>
+    
+    <!-- Scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Cart Modal Functionality
+            const cartTrigger = document.getElementById('cart-trigger');
+            const cartModal = document.getElementById('cart-modal');
+            const closeModal = document.querySelector('.close-modal');
+            const continueShopping = document.getElementById('continue-shopping');
+            const proceedCheckout = document.getElementById('proceed-checkout');
+            const checkoutPage = document.getElementById('checkout-page');
+            const mainContent = document.querySelector('main');
+            const footerContent = document.querySelector('footer');
+            
+            // Show cart modal
+            cartTrigger.addEventListener('click', function() {
+                cartModal.style.display = 'block';
+            });
+            
+            // Close cart modal
+            closeModal.addEventListener('click', function() {
+                cartModal.style.display = 'none';
+            });
+            
+            // Continue shopping
+            continueShopping.addEventListener('click', function() {
+                cartModal.style.display = 'none';
+            });
+            
+            // Proceed to checkout
+            proceedCheckout.addEventListener('click', function() {
+                cartModal.style.display = 'none';
+                checkoutPage.classList.remove('hidden');
+                mainContent.style.display = 'none';
+                footerContent.style.display = 'none';
+            });
+            
+            // Payment method selection
+            const paymentOptions = document.querySelectorAll('.payment-option');
+            paymentOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    paymentOptions.forEach(opt => opt.classList.remove('selected'));
+                    this.classList.add('selected');
+                });
+            });
+            
+            // Quantity controls
+            document.querySelectorAll('.quantity-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const quantityElement = this.parentElement.querySelector('.quantity');
+                    let quantity = parseInt(quantityElement.textContent);
+                    
+                    if (this.classList.contains('minus') && quantity > 1) {
+                        quantity--;
+                    } else if (this.classList.contains('plus')) {
+                        quantity++;
+                    }
+                    
+                    quantityElement.textContent = quantity;
+                    // Here you would update the cart total
+                });
+            });
+            
+            // Remove item
+            document.querySelectorAll('.remove-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    this.closest('.cart-item').remove();
+                    // Here you would update the cart count and total
+                });
+            });
+            
+            // Form validation
+            document.querySelector('.place-order-btn').addEventListener('click', function() {
+                let isValid = true;
+                
+                document.querySelectorAll('.form-input[required]').forEach(input => {
+                    if (!input.value) {
+                        isValid = false;
+                        input.nextElementSibling.style.display = 'block';
+                    } else {
+                        input.nextElementSibling.style.display = 'none';
+                    }
+                });
+                
+                if (isValid) {
+                    // Here you would process the order
+                    alert('Order placed successfully!');
+                }
+            });
+        });
+    </script>
+    <!-- Your other script files -->
+    <script src="product-detail.js"></script>
+    <script src="dropdown.js"></script>
+    <script src="data.js"></script>
+    <script src="auth.js"></script>
+    <script src="slider.js"></script>
+    <script src="products.js"></script>
+    <script src="cart.js"></script>
+    <script src="modal.js"></script>
+    <script src="notifications.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

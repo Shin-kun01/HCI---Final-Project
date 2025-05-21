@@ -1,0 +1,156 @@
+<div class="slider-template">
+    <div class="slider">
+        <div class="slides">
+            <!-- Slides go here -->
+            <div class="slide active">
+                <img src="Slide/landscape.png" alt="Slide 1">
+            </div>
+            <div class="slide">
+                <img src="Slide/landscape summer collection.png" alt="Slide 2">
+            </div>
+            <div class="slide">
+                <img src="Slide/landscape home decor.png" alt="Slide 3">
+            </div>
+        </div>
+        
+        <!-- Navigation arrows -->
+        <button class="slider-nav prev">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="slider-nav next">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+        
+        <!-- Indicators -->
+        <div class="slider-indicators">
+            <span class="indicator active" data-index="0"></span>
+            <span class="indicator" data-index="1"></span>
+            <span class="indicator" data-index="2"></span>
+        </div>
+    </div>
+</div>
+
+<script>
+// This file contains templates for sliders that can be used throughout the application
+// The actual implementation of sliders is in static/js/slider.js
+document.addEventListener('DOMContentLoaded', function() {
+    // These are just template structures for documentation purposes
+    // To use a slider on a page, you would do:
+    // 1. Create the HTML structure similar to above
+    // 2. Initialize it with the ImageSlider class from slider.js
+    
+    // Example usage:
+    /*
+    <div id="my-slider" class="slider">
+        <div class="slides">
+            <div class="slide active">
+                <img src="image1.jpg" alt="Image 1">
+            </div>
+            <div class="slide">
+                <img src="image2.jpg" alt="Image 2">
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            new ImageSlider('#my-slider', {
+                autoplay: true,
+                interval: 5000,
+                showNavigation: true,
+                showIndicators: true
+            });
+        });
+    </script>
+    */
+    
+    // Add base slider styles (the main styles are in the main stylesheet)
+    const style = document.createElement('style');
+    style.textContent = `
+        .slider {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+        }
+        
+        .slide.active {
+            opacity: 1;
+            z-index: 1;
+        }
+        
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .slider-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.7);
+            border: none;
+            cursor: pointer;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: #333;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease;
+        }
+        
+        .slider-nav:hover {
+            background-color: white;
+        }
+        
+        .slider-nav.prev {
+            left: 20px;
+        }
+        
+        .slider-nav.next {
+            right: 20px;
+        }
+        
+        .slider-indicators {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 2;
+        }
+        
+        .indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .indicator.active {
+            background-color: white;
+        }
+    `;
+    document.head.appendChild(style);
+});
+</script>
+

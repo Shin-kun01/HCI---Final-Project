@@ -1,0 +1,143 @@
+/* Authentication Styles */
+.auth-container {
+    max-width: 500px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.auth-title {
+    margin-bottom: 1.5rem;
+    text-align: center;
+    color: #443628;
+}
+
+.auth-form {
+    margin-bottom: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #443628;
+}
+
+.form-input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.form-input:focus {
+    border-color: #d3b683;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(211, 182, 131, 0.3);
+}
+
+.form-textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    resize: vertical;
+    min-height: 100px;
+}
+
+.form-textarea:focus {
+    border-color: #d3b683;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(211, 182, 131, 0.3);
+}
+
+.form-select {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    background-color: #fff;
+}
+
+.form-select:focus {
+    border-color: #d3b683;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(211, 182, 131, 0.3);
+}
+
+.form-checkbox {
+    display: flex;
+    align-items: center;
+}
+
+.form-checkbox input {
+    margin-right: 0.5rem;
+}
+
+.form-help {
+    display: block;
+    margin-top: 0.3rem;
+    color: #666;
+    font-size: 0.875rem;
+}
+
+.form-error {
+    display: block;
+    color: #dc3545;
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
+}
+
+.form-actions {
+    margin-top: 2rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.btn-block {
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+
+.auth-footer {
+    text-align: center;
+    border-top: 1px solid #eee;
+    padding-top: 1.5rem;
+}
+
+.auth-footer a {
+    color: #d3b683;
+    font-weight: 500;
+}
+
+.form-row {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.form-group.half {
+    flex: 1;
+    margin-bottom: 0;
+}
+
+@media (max-width: 576px) {
+    .form-row {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+    }
+}

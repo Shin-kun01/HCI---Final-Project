@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Ganchillo - Crochet Fashion Collection{% endblock %}</title>
+    <meta name="description" content="Discover beautiful handcrafted crochet clothing, accessories, and home decor at Ganchillo. Create beauty with every stitch.">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="modal.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Judson:wght@400;700&family=Public+Sans:wght@300;400;500;600&family=Rubik:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="Logo/Ganchillo.svg" alt="Ganchillo Logo">
+                </a>
+            </div>
+            
+            <div class="search-container">
+                <input type="text" placeholder="Search in Ganchillo">
+                <button class="search-btn"><i class="fas fa-search"></i></button>
+            </div>
+            
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#">Categories</a></li>
+                    <li><a href="#">Products</a></li>
+                </ul>
+            </nav>
+            
+            <div class="nav-icons">
+                <div class="nav-icon">
+                    <i class="fas fa-globe"></i>
+                </div>
+                <div class="nav-icon">
+                    <i class="far fa-bell"></i>
+                </div>
+                <div class="nav-icon">
+                    <i class="far fa-user"></i>
+                </div>
+                <div class="nav-icon cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>GANCHILLO</h3>
+                    <p>Create beauty with every stitch.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-pinterest-p"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Customer Care</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">About Ganchillo</a></li>
+                        <li><a href="#">Contact us</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                        <li><a href="#">Payment Method</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>STAY IN THE LOOP, STITCH BY STITCH</h3>
+                    <p>Subscribe to receive updates, access to exclusive deals, and more.</p>
+                    <div class="newsletter">
+                        <form class="newsletter-form">
+                            <input type="email" class="newsletter-input" placeholder="Your Email Address">
+                            <button type="submit" class="newsletter-btn">SUBSCRIBE</button>
+                        </form>
+                    </div>
+                    <div class="newsletter">
+                        <form class="newsletter-form">
+                            <input type="tel" class="newsletter-input" placeholder="Your phone number for SMS">
+                            <button type="submit" class="newsletter-btn">SUBSCRIBE</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2023 Ganchillo. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Scripts -->
+    <script src="modal.js"></script>
+    <script src="slider.js"></script>
+    <script src="cart.js"></script>
+    <script src="checkout.js"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>
